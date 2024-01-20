@@ -21,7 +21,6 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      #after we built our project, we want to deploy our files to aws using amazon cli
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
         env:
