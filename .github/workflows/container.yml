@@ -5,7 +5,7 @@ on: #events we're watching for
     branches:
       - master
     paths:
-      - "packages/container/**" #only run this workflow when changes are made inside the container
+      - packages/container/** #only run this workflow when changes are made inside the container
 
 defaults:
   run:
