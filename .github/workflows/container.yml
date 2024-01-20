@@ -3,7 +3,7 @@ name: deploy-container
 on: #events we're watching for
   push:
     branches:
-      - master
+      - main
     paths:
       - packages/container/** #only run this workflow when changes are made inside the container
 
