@@ -1,0 +1,27 @@
+name: deploy-container
+
+on: #events we're watching for
+  push:
+    branches: -master
+    paths: -'packages/container/**' #only run this workflow when changes are made inside the container
+
+defaults:
+  run:
+    working-directory: packages/container
+
+jobs: #all jobs run in parallel
+  build:
+    runs-on: ubuntu-latest #virtual machines on the Github #we want linux based machine
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
+
+      #after we built our project, we want to deploy our files to aws using amazon cli
+      - uses: shinyinc/action-aws-cli@v1.2
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ""
