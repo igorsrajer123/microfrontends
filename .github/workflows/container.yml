@@ -11,7 +11,8 @@ defaults:
   run:
     working-directory: packages/container
 
-jobs: #all jobs run in parallel
+#all jobs run in parallel
+jobs:
   build:
     runs-on: ubuntu-latest #virtual machines on the Github #we want linux based machine
 
