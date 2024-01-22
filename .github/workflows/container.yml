@@ -1,6 +1,6 @@
 name: deploy-container
 
-on: #events we're watching for
+on:
   push:
     branches:
       - main
